@@ -16,6 +16,15 @@ int main() {
 	for(i = 0; i < ITERATION_SIZE; i++) { 
 		dummy += array[(i*16) % ARRAY_SIZE];
 	}
+
+    // Miss always, two blocks over, failing on loop around 4096 times
+    for(i = 0; i < ITERATION_SIZE/100; i++) {
+        dummy += array[(i*64) % ARRAY_SIZE];
+    }
+
+    // Estimated Direct Mapped = 4896
+    // Direct Mapped - dl1.misses                     4939 # total number of misses
+
 	return(dummy);
 
 }

@@ -688,28 +688,14 @@ void open_ended_prefetcher(struct cache_t *cp, md_addr_t addr) {
 		apply_state_transition(entry, new_stride);
 		entry->prev_addr = addr; 
             
-		    prefetch_addr = search_miss_queue(cp, addr);
-		    	if (prefetch_addr){
-				    prefetch(cp, prefetch_addr);
-			    } else {
-            		if (entry->state == INITIAL || entry->state == TRANSIENT || entry->state == STEADY){
-	        	    	prefetch(cp, addr + entry->stride);
-        	    	}
-                }
-                
-
-       /* 
-		if (entry->state == STEADY || entry->state == INITIAL || entry->state == TRANSIENT){
-			prefetch(cp, addr + entry->stride);
-		}
-		else {
-			    prefetch_addr = search_miss_queue(cp, addr);
-		    	if (prefetch_addr){
-				    prefetch(cp, prefetch_addr);
-			    }
-		}
-        */
-        
+		prefetch_addr = search_miss_queue(cp, addr);
+		if (prefetch_addr){
+		    prefetch(cp, prefetch_addr);
+        } else {
+            if (entry->state == INITIAL || entry->state == TRANSIENT || entry->state == STEADY) {
+	            prefetch(cp, addr + entry->stride);
+            }
+        }           
 	}
 }
 

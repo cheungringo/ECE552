@@ -1,4 +1,4 @@
-	.file	1 "open_test.c"
+	.file	1 "./mbq6.c"
 
  # GNU C 2.7.2.3 [AL 1.1, MM 40, tma 0.1] SimpleScalar running sstrix compiled by GNU C
 
@@ -19,72 +19,161 @@ __gnu_compiled_c:
 
 	.text
 
-	.loc	1 14
+	.loc	1 10
 	.ent	main
 main:
-	.frame	$sp,48,$31		# vars= 8, regs= 6/0, args= 16, extra= 0
-	.mask	0x801f0000,-4
+	.frame	$sp,56,$31		# vars= 0, regs= 9/0, args= 16, extra= 0
+	.mask	0x80ff0000,-8
 	.fmask	0x00000000,0
-	subu	$sp,$sp,48
-	sw	$31,44($sp)
-	sw	$20,40($sp)
-	sw	$19,36($sp)
-	sw	$18,32($sp)
-	sw	$17,28($sp)
-	sw	$16,24($sp)
+	subu	$sp,$sp,56
+	sw	$31,48($sp)
+	sw	$23,44($sp)
+	sw	$22,40($sp)
+	sw	$21,36($sp)
+	sw	$20,32($sp)
+	sw	$19,28($sp)
+	sw	$18,24($sp)
+	sw	$17,20($sp)
+	sw	$16,16($sp)
 	jal	__main
-	li	$4,0x00004000		# 16384
+	li	$4,0x00010000		# 65536
 	jal	malloc
-	li	$4,0x00004000		# 16384
+	move	$23,$2
+	li	$4,0x00010000		# 65536
 	jal	malloc
-	li	$4,0x00004000		# 16384
+	move	$22,$2
+	li	$4,0x00010000		# 65536
 	jal	malloc
-	li	$4,0x00004000		# 16384
+	move	$21,$2
+	li	$4,0x00010000		# 65536
 	jal	malloc
-	move	$19,$0
-	move	$20,$0
-	move	$18,$0
+	move	$20,$2
+	li	$4,0x00010000		# 65536
+	jal	malloc
+	move	$19,$2
+	li	$4,0x00010000		# 65536
+	jal	malloc
+	move	$18,$2
+	move	$16,$0
 	move	$17,$0
 $L25:
-	bne	$20,$0,$L26
-	li	$4,0x00000004		# 4
-	jal	malloc
-	move	$18,$2
-	move	$20,$18
-	j	$L27
+	li	$2,-1840700269			# 0x92492493
+	mult	$17,$2
+	.set	noreorder
+	mfhi	$3
+	mflo	$2
+	#nop
+	#nop
+	.set	reorder
+	srl	$2,$3,0
+	move	$3,$0
+	addu	$2,$17,$2
+	sra	$2,$2,3
+	sra	$4,$17,31
+	subu	$2,$2,$4
+	sll	$5,$2,3
+	subu	$5,$5,$2
+	sll	$5,$5,1
+	li	$4,0x00000002		# 2
+	subu	$5,$17,$5
+	jal	pow
+	move	$3,$2
+	bgez	$3,$L26
+	addu	$2,$3,16383
 $L26:
-	li	$4,0x00000004		# 4
-	jal	malloc
-	sw	$2,0($18)
-	move	$18,$2
+	sra	$2,$2,14
+	sll	$2,$2,14
+	subu	$2,$3,$2
+	sll	$2,$2,2
+	addu	$2,$2,$23
+	.set	noreorder
+	lw	$2,0($2)
+	#nop
+	.set	reorder
+	addu	$16,$16,$2
+	move	$2,$3
+	bgez	$3,$L27
+	addu	$2,$3,16383
 $L27:
-	addu	$19,$19,1
-	move	$16,$0
-	blez	$19,$L24
+	sra	$2,$2,14
+	sll	$2,$2,14
+	subu	$2,$3,$2
+	sll	$2,$2,2
+	addu	$2,$2,$22
+	.set	noreorder
+	lw	$2,0($2)
+	#nop
+	.set	reorder
+	addu	$16,$16,$2
+	move	$2,$3
+	bgez	$3,$L28
+	addu	$2,$3,16383
+$L28:
+	sra	$2,$2,14
+	sll	$2,$2,14
+	subu	$2,$3,$2
+	sll	$2,$2,2
+	addu	$2,$2,$21
+	.set	noreorder
+	lw	$2,0($2)
+	#nop
+	.set	reorder
+	addu	$16,$16,$2
+	move	$2,$3
+	bgez	$3,$L29
+	addu	$2,$3,16383
+$L29:
+	sra	$2,$2,14
+	sll	$2,$2,14
+	subu	$2,$3,$2
+	sll	$2,$2,2
+	addu	$2,$2,$20
+	.set	noreorder
+	lw	$2,0($2)
+	#nop
+	.set	reorder
+	addu	$16,$16,$2
+	move	$2,$3
+	bgez	$3,$L30
+	addu	$2,$3,16383
+$L30:
+	sra	$2,$2,14
+	sll	$2,$2,14
+	subu	$2,$3,$2
+	sll	$2,$2,2
+	addu	$2,$2,$19
+	.set	noreorder
+	lw	$2,0($2)
+	#nop
+	.set	reorder
+	addu	$16,$16,$2
+	move	$2,$3
+	bgez	$3,$L31
+	addu	$2,$3,16383
 $L31:
-	li	$4,0x00000004		# 4
-	jal	malloc
-	addu	$16,$16,1
-	slt	$2,$16,$19
-	bne	$2,$0,$L31
-$L24:
+	sra	$2,$2,14
+	sll	$2,$2,14
+	subu	$2,$3,$2
+	sll	$2,$2,2
+	addu	$2,$2,$18
+	.set	noreorder
+	lw	$2,0($2)
+	.set	reorder
 	addu	$17,$17,1
-	slt	$2,$17,256
-	bne	$2,$0,$L25
-	sw	$20,0($18)
-	move	$17,$0
-	li	$3,0x00063fff		# 409599
-$L37:
-	addu	$17,$17,1
-	slt	$2,$3,$17
-	beq	$2,$0,$L37
-	move	$2,$0
-	lw	$31,44($sp)
-	lw	$20,40($sp)
-	lw	$19,36($sp)
-	lw	$18,32($sp)
-	lw	$17,28($sp)
-	lw	$16,24($sp)
-	addu	$sp,$sp,48
+	addu	$16,$16,$2
+	li	$2,0x00009fff		# 40959
+	slt	$2,$2,$17
+	beq	$2,$0,$L25
+	move	$2,$16
+	lw	$31,48($sp)
+	lw	$23,44($sp)
+	lw	$22,40($sp)
+	lw	$21,36($sp)
+	lw	$20,32($sp)
+	lw	$19,28($sp)
+	lw	$18,24($sp)
+	lw	$17,20($sp)
+	lw	$16,16($sp)
+	addu	$sp,$sp,56
 	j	$31
 	.end	main

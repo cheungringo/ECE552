@@ -71,8 +71,8 @@ int main() {
 	}
 	
 
-	// 800+1600+8192 = 10592
-	//dl1.misses                    10636 # total number of misses
+	// Estimated Direct Mapped - 800+1600+8192 = 10592
+	// Direct Mapped - dl1.misses                    10636 # total number of misses
 
 
 	return(dummy);
