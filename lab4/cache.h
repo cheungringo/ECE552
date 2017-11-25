@@ -164,7 +164,7 @@ enum rpt_entry_states {
 	NO_PREDICTION,
 };
 
-#define RPT_SIZE 512
+#define RPT_SIZE 256
 #define MISS_QUEUE_SIZE 512
 /* ECE552 Assignment 4 - END CODE */
 
